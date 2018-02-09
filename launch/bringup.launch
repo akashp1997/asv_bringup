@@ -14,10 +14,7 @@
 -->
   <!-- Load the URDF into the ROS Parameter Server -->
   <param command="$(find xacro)/xacro '$(find asv_gazebo)/urdf/gazebo.xacro' --inorder" name="robot_description"/>
-  <!--Load the Joint Configuration File -->
-  <rosparam command="load" file="$(find asv_controls)/config/asv_joints.yaml"/>
-  <!--Load/Spawn the controllers in the World-->
-  <!--<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/asv" args="joint_state_controller" />-->
+
   <!--Joint And Robot State Publishers to give TF of all links-->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
@@ -30,21 +27,12 @@
     <arg value="$(arg gps_baud)" name="gps_baud"/>
   </include>
 
-  <!--Node to convert GPS Data to Odometry Format-->
-  <node name="gps_conv" pkg="gps_common" type="utm_odometry_node">
-    <remap from="odom" to="gps_odom" />
-    <remap from="fix" to="/gps/fix" />
-    <param name="rot_covariance" value="99999" />
-    <param name="frame_id" value="garmin" />
-  </node>
+  <node name="odom" pkg="asv_sensors" type="gps_to_odom.py" respawn="true"/>
 
-  <!-- Extended Kallman Filter to Merge various sensor streams to generate an odometry-->
-  <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
-    <param name="output_frame" value="odom" />
-    <param name="freq" value="30" />
-    <param name="odom_used" value="true" />
-    <param name="imu_used" value="true" />
-    <param name="vo_used" value="false" />
-  </node>
+
+  <node name="control_split" pkg="asv_controls" type="control_set.py"/>
+
+  <include file="$(find asv_controls)/launch/pid.launch" />
+
 
 </launch>
