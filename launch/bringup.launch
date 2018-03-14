@@ -1,9 +1,4 @@
 <?xml version="1.0"?>
-<launch>
-  <arg default="192.168.0.100" name="lidar_host"/>
-  <arg default="$(find asv_description)/urdf/asv_base.xacro" name="urdf_path"/>
-  <arg default="/dev/ttyUSB0" name="gps_com"/>
-  <arg default="38400" name="gps_baud"/>
   <!--Install the following
 -ros-kinetic-desktop-full
 -ros-kinetic-lms1xx
@@ -12,27 +7,36 @@
 -ros-kinetic-gps-common
 -ros-kinetic-robot-pose-ekf
 -->
+
+<launch>
+  <!--
+  <arg default="192.168.0.100" name="lidar_host"/>
+  <arg default="$(find asv_description)/urdf/asv_base.xacro" name="urdf_path"/>
+  <arg default="/dev/ttyUSB0" name="gps_com"/>
+  <arg default="38400" name="gps_baud"/>-->
   <!-- Load the URDF into the ROS Parameter Server -->
   <param command="$(find xacro)/xacro '$(find asv_gazebo)/urdf/gazebo.xacro' --inorder" name="robot_description"/>
 
   <!--Joint And Robot State Publishers to give TF of all links-->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+  
+
   <!-- All the sensors's nodes have been created here for sensor streams -->
-  <include file="$(find lms1xx)/launch/LMS1xx.launch">
+  <!--<include file="$(find lms1xx)/launch/LMS1xx.launch">
     <arg name="world_name" value="$(arg lidar_host)"/>
   </include>
   <include file="$(find asv_bringup)/launch/gps.launch">
     <arg value="$(arg gps_com)" name="gps_com"/>
     <arg value="$(arg gps_baud)" name="gps_baud"/>
-  </include>
+  </include>-->
 
-  <node name="odom" pkg="asv_sensors" type="gps_to_odom.py" respawn="true"/>
+  <!--<node name="odom" pkg="asv_sensors" type="gps_to_odom.py" respawn="true"/>
 
 
   <node name="control_split" pkg="asv_controls" type="control_set.py"/>
 
-  <include file="$(find asv_controls)/launch/pid.launch" />
+  <include file="$(find asv_controls)/launch/pid.launch" />-->
 
 
 </launch>
