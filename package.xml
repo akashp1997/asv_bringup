@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>asv_bringup</name>
-  <version>0.0.0</version>
+  <version>0.0.1</version>
   <description>The asv_bringup package</description>
 
   <maintainer email="akashp1997@todo.todo">Akash Purandare</maintainer>
