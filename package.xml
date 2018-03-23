@@ -2,9 +2,9 @@
 <package format="2">
   <name>asv_bringup</name>
   <version>0.0.1</version>
-  <description>The asv_bringup package</description>
+  <description>The package for bringing up the minimal robot in ROS</description>
 
-  <maintainer email="akashp1997@todo.todo">Akash Purandare</maintainer>
+  <maintainer email="akashp1997@gmail.com">Akash Purandare</maintainer>
 
   <license>BSD</license>
 
