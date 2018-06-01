@@ -6,5 +6,3 @@ Install the following components from apt before running the launch files in thi
 	*ros-kinetic-lms1xx
 	*ros-kinetic-nmea-navsat-driver
 	*ros-kinetic-pid
-	*ros-kinetic-gps-common
-	*ros-kinetic-robot-pose-ekf

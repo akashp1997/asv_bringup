@@ -1,15 +1,14 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>asv_bringup</name>
-  <version>0.0.0</version>
-  <description>The asv_bringup package</description>
+	<name>asv_bringup</name>
+	<version>0.2.0</version>
+	<description>The asv_bringup package which contains the launch file for bringing up the basic functionality of ROS Interfacing with Gazebo</description>
+	<maintainer email="akashp1997@gmail.com">Akash Purandare</maintainer>
+	<license>BSD</license>
+	<buildtool_depend>catkin</buildtool_depend>
 
-  <maintainer email="akashp1997@todo.todo">Akash Purandare</maintainer>
+	<build_depend>asv_navigation</build_depend>
 
-  <license>BSD</license>
-
-  <buildtool_depend>catkin</buildtool_depend>
-  <exec_depend>asv_description</exec_depend>
-  <exec_depend>asv_sensors</exec_depend>
+	<exec_depend>asv_navigation</exec_depend>
 
 </package>
