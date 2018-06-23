@@ -11,7 +11,9 @@
 
 	<include file="$(find asv_localization)/launch/localization.launch" />
 
-	<include file="$(find asv_controls)/launch/controls.launch" />
+	<include file="$(find asv_controls)/launch/controls.launch">
+		<arg name="thruster_port" value="/dev/ttyACM0" />
+	</include>
 
 	<!--<include file="$(find asv_navigation)/launch/phase2_navigation.launch" />-->
 
